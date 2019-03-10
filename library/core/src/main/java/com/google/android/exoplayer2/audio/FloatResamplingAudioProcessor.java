@@ -84,7 +84,7 @@ import java.nio.ByteOrder;
   }
 
   @Override
-  public void queueInput(ByteBuffer inputBuffer) {
+  public void queueInput(ByteBuffer inputBuffer, long presentationTimeUs) {
     boolean isInput32Bit = sourceEncoding == C.ENCODING_PCM_32BIT;
     int position = inputBuffer.position();
     int limit = inputBuffer.limit();

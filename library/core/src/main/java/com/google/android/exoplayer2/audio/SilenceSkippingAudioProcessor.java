@@ -166,7 +166,7 @@ public final class SilenceSkippingAudioProcessor implements AudioProcessor {
   }
 
   @Override
-  public void queueInput(ByteBuffer inputBuffer) {
+  public void queueInput(ByteBuffer inputBuffer, long presentationTimeUs) {
     while (inputBuffer.hasRemaining() && !outputBuffer.hasRemaining()) {
       switch (state) {
         case STATE_NOISY:

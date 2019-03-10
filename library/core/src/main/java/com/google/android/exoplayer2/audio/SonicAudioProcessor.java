@@ -200,7 +200,7 @@ public final class SonicAudioProcessor implements AudioProcessor {
   }
 
   @Override
-  public void queueInput(ByteBuffer inputBuffer) {
+  public void queueInput(ByteBuffer inputBuffer, long presentationTimeUs) {
     Assertions.checkState(sonic != null);
     if (inputBuffer.hasRemaining()) {
       ShortBuffer shortBuffer = inputBuffer.asShortBuffer();

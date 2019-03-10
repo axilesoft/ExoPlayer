@@ -316,7 +316,7 @@ public final class SilenceSkippingAudioProcessorTest {
     while (inputBufferProvider.hasRemaining()) {
       ByteBuffer inputBuffer = inputBufferProvider.getNextInputBuffer(inputBufferSize);
       while (inputBuffer.hasRemaining()) {
-        processor.queueInput(inputBuffer);
+        processor.queueInput(inputBuffer, );
         ByteBuffer outputBuffer = processor.getOutput();
         totalOutputFrames += outputBuffer.remaining() / (2 * processor.getOutputChannelCount());
         outputBuffer.clear();

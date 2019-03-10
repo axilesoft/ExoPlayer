@@ -25,7 +25,7 @@ import java.nio.ByteOrder;
  *
  * <p>Call {@link #configure(int, int, int)} to configure the processor to receive input audio, then
  * call {@link #isActive()} to determine whether the processor is active. {@link
- * #queueInput(ByteBuffer)}, {@link #queueEndOfStream()}, {@link #getOutput()}, {@link #isEnded()},
+ * #queueInput(ByteBuffer, long)}, {@link #queueEndOfStream()}, {@link #getOutput()}, {@link #isEnded()},
  * {@link #getOutputChannelCount()}, {@link #getOutputEncoding()} and {@link
  * #getOutputSampleRateHz()} may only be called if the processor is active. Call {@link #reset()} to
  * reset the processor to its unconfigured state and release any resources.
@@ -96,12 +96,13 @@ public interface AudioProcessor {
    * previous buffer returned by {@link #getOutput()}.
    *
    * @param buffer The input buffer to process.
+   * @param presentationTimeUs
    */
-  void queueInput(ByteBuffer buffer);
+  void queueInput(ByteBuffer buffer, long presentationTimeUs);
 
   /**
    * Queues an end of stream signal. After this method has been called,
-   * {@link #queueInput(ByteBuffer)} may not be called until after the next call to
+   * {@link #queueInput(ByteBuffer, long)} may not be called until after the next call to
    * {@link #flush()}. Calling {@link #getOutput()} will return any remaining output data. Multiple
    * calls may be required to read all of the remaining output data. {@link #isEnded()} will return
    * {@code true} once all remaining output data has been read.

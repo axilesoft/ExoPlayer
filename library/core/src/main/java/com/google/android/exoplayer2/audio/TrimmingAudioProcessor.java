@@ -121,7 +121,7 @@ import java.nio.ByteOrder;
   }
 
   @Override
-  public void queueInput(ByteBuffer inputBuffer) {
+  public void queueInput(ByteBuffer inputBuffer, long presentationTimeUs) {
     int position = inputBuffer.position();
     int limit = inputBuffer.limit();
     int remaining = limit - position;

@@ -80,7 +80,7 @@ import java.nio.ByteOrder;
   }
 
   @Override
-  public void queueInput(ByteBuffer inputBuffer) {
+  public void queueInput(ByteBuffer inputBuffer, long presentationTimeUs) {
     // Prepare the output buffer.
     int position = inputBuffer.position();
     int limit = inputBuffer.limit();

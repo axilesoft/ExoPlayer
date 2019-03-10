@@ -48,8 +48,9 @@ public final class TeeAudioProcessor implements AudioProcessor {
      * Called when data is written to the audio processor.
      *
      * @param buffer A read-only buffer containing input which the audio processor will handle.
+     * @param avSyncPresentationTimeUs
      */
-    void handleBuffer(ByteBuffer buffer);
+    void handleBuffer(ByteBuffer buffer, long avSyncPresentationTimeUs);
   }
 
   private final AudioBufferSink audioBufferSink;
@@ -110,13 +111,13 @@ public final class TeeAudioProcessor implements AudioProcessor {
   }
 
   @Override
-  public void queueInput(ByteBuffer buffer) {
+  public void queueInput(ByteBuffer buffer, long presentationTimeUs) {
     int remaining = buffer.remaining();
     if (remaining == 0) {
       return;
     }
 
-    audioBufferSink.handleBuffer(buffer.asReadOnlyBuffer());
+    audioBufferSink.handleBuffer(buffer.asReadOnlyBuffer(), presentationTimeUs);
 
     if (this.buffer.capacity() < remaining) {
       this.buffer = ByteBuffer.allocateDirect(remaining).order(ByteOrder.nativeOrder());
@@ -216,7 +217,7 @@ public final class TeeAudioProcessor implements AudioProcessor {
     }
 
     @Override
-    public void handleBuffer(ByteBuffer buffer) {
+    public void handleBuffer(ByteBuffer buffer, long avSyncPresentationTimeUs) {
       try {
         maybePrepareFile();
         writeBuffer(buffer);

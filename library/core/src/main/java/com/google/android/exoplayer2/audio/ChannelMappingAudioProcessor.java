@@ -111,7 +111,7 @@ import java.util.Arrays;
   }
 
   @Override
-  public void queueInput(ByteBuffer inputBuffer) {
+  public void queueInput(ByteBuffer inputBuffer, long presentationTimeUs) {
     Assertions.checkState(outputChannels != null);
     int position = inputBuffer.position();
     int limit = inputBuffer.limit();
