@@ -15,7 +15,7 @@
  */
 package com.google.android.exoplayer2;
 
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 
 /**
  * Holds a {@link Format}.

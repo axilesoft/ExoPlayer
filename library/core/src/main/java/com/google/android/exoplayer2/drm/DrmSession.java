@@ -17,7 +17,7 @@ package com.google.android.exoplayer2.drm;
 
 import android.annotation.TargetApi;
 import android.media.MediaDrm;
-import androidx.annotation.IntDef;
+import android.support.annotation.IntDef;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
